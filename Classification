@@ -1,0 +1,23 @@
+pip install scikit-learn
+pip install jupyter
+import sklearn
+from sklearn.datasets import load_breast_cancer
+data=load_breast_cancer()
+data
+label_names=data['target_names']
+labels=data['target']
+feature_names=data['feature_names']
+features=data['data']
+print(label_names)
+print(labels)
+print(feature_names)
+print(features)
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(features,labels,test_size=0.33,random_state=42)
+from sklearn.naive_bayes import GaussianNB
+classifier=GaussianNB()
+classifier.fit(x_train,y_train)
+y_pred=classifier.predict(x_test)
+y_pred
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_test,y_pred))
